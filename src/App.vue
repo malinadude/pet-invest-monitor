@@ -3,7 +3,7 @@
   import { useRoute, RouterView } from 'vue-router';
 
   const route = useRoute();
-  const layout = computed(() => route.meta.layout || 'empty-layout');
+  const layout = computed(() => route.meta.layout);
 </script>
 
 <template>

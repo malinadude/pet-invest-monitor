@@ -1,14 +1,18 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
 
+import LayoutDefault from '@/layouts/LayoutDefault.vue';
+import LayoutPageNotFound from '@/layouts/LayoutPageNotFound.vue';
+
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
+app.component('LayoutDefault', LayoutDefault);
+app.component('LayoutPageNotFound', LayoutPageNotFound);
 
-app.mount('#app')
+app
+    .use(createPinia())
+    .use(router)
+    .mount('#app')

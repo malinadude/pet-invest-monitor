@@ -4,6 +4,8 @@
 
 <template>
   <div class="layout layout--empty">
+    layout--default
+
     <TheHeader />
 
     <main>

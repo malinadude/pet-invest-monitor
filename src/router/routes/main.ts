@@ -2,11 +2,21 @@ import {
   LAYOUT_DEFAULT,
   LAYOUT_PAGE_NOT_FOUND,
 
+  PAGE_BRIEFCASES,
   PAGE_DASHBOARD,
   PAGE_NOT_FOUND,
 } from '../constants';
 
 const mainRoutes = [
+  {
+    component: () => import('@/pages/PageBriefcases.vue'),
+    meta: {
+      layout: LAYOUT_DEFAULT,
+      title: 'Портфели',
+    },
+    name: PAGE_BRIEFCASES,
+    path: '/',
+  },
   {
     component: () => import('@/pages/PageDashboard.vue'),
     meta: {
@@ -14,7 +24,7 @@ const mainRoutes = [
       title: 'Дашборд',
     },
     name: PAGE_DASHBOARD,
-    path: '/',
+    path: '/briefcases/:briefcaseId/dashboard',
   },
   {
     component: () => import('@/pages/PageNotFound.vue'),

@@ -1,8 +1,17 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useVModel } from '@vueuse/core'
+
+const props = defineProps<{
+  isChecked?: boolean
+}>()
+const emit = defineEmits(['update:isChecked'])
+
+const modelIsChecked = useVModel(props, 'isChecked', emit)
+</script>
 
 <template>
   <label class="ui-ios-switch">
-    <input type="checkbox" />
+    <input v-model="modelIsChecked" type="checkbox" />
 
     <div>
       <div></div>

@@ -1,22 +1,24 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { vOnClickOutside } from '@vueuse/components'
 
-defineProps({
-  hasTriggerArrow: {
-    type: Boolean,
-    default: false
-  }
-})
+defineProps<{
+  hasTriggerArrow?: boolean
+}>()
 
-const isOpen = ref(false)
+const isOpen = ref<boolean>(false)
 
 const toggleDropdownState = (state: boolean) => {
   isOpen.value = state
 }
+
+const dropdownClose = () => {
+  toggleDropdownState(false)
+}
 </script>
 
 <template>
-  <div class="ui-dropdown">
+  <div class="ui-dropdown" v-on-click-outside="dropdownClose">
     <div class="ui-dropdown__trigger" @click="toggleDropdownState(!isOpen)">
       <div class="ui-dropdown__trigger-wrapper">
         <slot name="trigger" />
@@ -26,7 +28,7 @@ const toggleDropdownState = (state: boolean) => {
     </div>
 
     <div class="ui-dropdown__content" v-show="isOpen">
-      <slot name="content" />
+      <slot name="content" :dropdownClose="dropdownClose" />
     </div>
   </div>
 </template>

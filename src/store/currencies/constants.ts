@@ -1,7 +1,6 @@
 import type { ICurrency } from './types'
 
-export const STORE_NAMESPACE = 'currency'
-export const DEFAULT_CURRENCY_CODE = 'rub'
+export const STORE_NAMESPACE = 'currencies'
 
 export const CURRENCIES: ICurrency[] = [
   {

@@ -34,7 +34,23 @@ const dropdownClose = () => {
 </template>
 
 <style lang="scss">
-.ui-dropdown__trigger {
-  cursor: pointer;
+.ui-dropdown {
+  position: relative;
+
+  &__trigger {
+    cursor: pointer;
+  }
+
+  &__content {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 15px);
+    background-color: var(--bg-main-color);
+    box-shadow: 0 6px 15px rgba(10, 10, 13, 0.651);
+    padding: 15px;
+    border: 0 solid hsla(0, 0%, 100%, 0.15);
+    border-radius: 0.42rem;
+    z-index: 3;
+  }
 }
 </style>

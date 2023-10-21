@@ -6,11 +6,13 @@ export const CURRENCIES: ICurrency[] = [
   {
     icon: 'rub.png',
     code: 'rub',
-    title: 'Рубль'
+    title: 'Рубль',
+    symbol: '₽'
   },
   {
     icon: 'usd.png',
     code: 'usd',
-    title: 'Доллар США'
+    title: 'Доллар США',
+    symbol: '$'
   }
 ]

@@ -4,12 +4,14 @@ import VHeader from '@/components/Header/VHeader.vue'
 
 <template>
   <div class="layout layout--default">
-    layout--default
-
     <VHeader />
 
-    <main>
-      <slot />
+    <main class="main">
+      <div class="container">
+        <div class="main-wrapper">
+          <slot />
+        </div>
+      </div>
     </main>
   </div>
 </template>

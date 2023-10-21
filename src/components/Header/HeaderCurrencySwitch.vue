@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCurrenciesStore } from '@/store/currencies/store'
+import { useCurrenciesStore } from '@/store/currencies/currencies.store'
 
 import type { ICurrency } from '@/store/currencies/types'
 

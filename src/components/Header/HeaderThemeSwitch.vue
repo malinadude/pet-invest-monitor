@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useCommonStore } from '@/store/common/store'
+import { useCommonStore } from '@/store/common/common.store'
 
 import UiIosSwitch from '@/components/Ui/UiIosSwitch.vue'
 

@@ -4,6 +4,7 @@ import { useVModel } from '@vueuse/core'
 const props = defineProps<{
   isChecked?: boolean
 }>()
+
 const emit = defineEmits(['update:isChecked'])
 
 const modelIsChecked = useVModel(props, 'isChecked', emit)
@@ -55,7 +56,6 @@ const modelIsChecked = useVModel(props, 'isChecked', emit)
       transition-duration: 0.4s;
       transition-property: background-color, box-shadow;
       box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.4);
-      margin: 15px 1.2em 15px 2.5em;
 
       & > div {
         float: left;

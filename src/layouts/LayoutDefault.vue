@@ -1,15 +1,17 @@
 <script setup lang="ts">
-  import TheHeader from '@/components/TheHeader.vue';
+import VHeader from '@/components/Header/VHeader.vue'
 </script>
 
 <template>
   <div class="layout layout--default">
-    layout--default
+    <VHeader />
 
-    <TheHeader />
-
-    <main>
-      <slot />
+    <main class="main">
+      <div class="container">
+        <div class="main-wrapper">
+          <slot />
+        </div>
+      </div>
     </main>
   </div>
 </template>

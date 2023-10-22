@@ -6,7 +6,7 @@ import HeaderCurrencySwitch from '@/components/Header/HeaderCurrencySwitch.vue'
 
 const links: ILink[] = [
   {
-    title: 'Дашборд',
+    title: 'Главная',
     to: '/'
   }
 ]
@@ -61,6 +61,19 @@ const links: ILink[] = [
 
     & > *:not(:last-child) {
       margin-right: 15px;
+    }
+
+    &-item {
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 4px;
+      padding: 0.65rem 1.1rem;
+
+      &.router-link-active,
+      &:hover {
+        background-color: #4d505f;
+        color: #fff;
+      }
     }
   }
 

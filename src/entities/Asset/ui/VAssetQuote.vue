@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import type { IAssetQuote } from '../model/types/quote'
 
 const props = defineProps<{
@@ -20,9 +22,9 @@ const profitSymbol = computed((): string | HTMLElement => {
 
   if (isProfit.value !== null) {
     if (props.quote.type === 'percent') {
-      transformedProfitSymbol = `<i class="fas fa-caret-up mr-1 ${
-        isProfit.value ? 'text-success' : 'text-danger'
-      }"></i>`
+      transformedProfitSymbol = `
+        <FontAwesomeIcon :icon="['fas', ${isProfit.value ? 'caret-up' : 'caret-down'}]" />
+      `
     }
 
     if (props.quote.type === 'sum') {

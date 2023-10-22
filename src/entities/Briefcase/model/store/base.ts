@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 
 import { STORE_NAME } from '../../consts/base'
 
-import type { IBriefcase } from '../../types/base'
+import type { IBriefcase } from '../types/base'
 
 interface IBriefcaseStore {
   state: {

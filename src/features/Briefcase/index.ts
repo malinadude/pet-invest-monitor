@@ -1,3 +1,3 @@
-import VBriefcaseSwitch from './components/VBriefcaseSwitch.vue'
+import VBriefcaseSwitch from './ui/VBriefcaseSwitch.vue'
 
 export { VBriefcaseSwitch }

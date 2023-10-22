@@ -1,3 +1,3 @@
-import VThemeSwitch from './components/VThemeSwitch.vue'
+import VThemeSwitch from './ui/VThemeSwitch.vue'
 
 export { VThemeSwitch }

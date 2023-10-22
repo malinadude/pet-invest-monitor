@@ -1,3 +1,3 @@
-import VCurrencySwitch from './components/VCurrencySwitch.vue'
+import VCurrencySwitch from './ui/VCurrencySwitch.vue'
 
 export { VCurrencySwitch }

@@ -1,4 +1,4 @@
 import PageNotFound from './components/PageNotFound.vue'
 
 export { PageNotFound }
-export { pageNotFoundRoutes } from './router/router'
+export { pageNotFoundRoutes } from './router/base'

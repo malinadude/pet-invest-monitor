@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 
+// eslint-disable-next-line
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import type { IAssetQuote } from '../model/types/quote'
@@ -39,7 +40,8 @@ const classes = computed(() => {
   const classes = []
 
   if (isProfit.value !== null) {
-    classes.push(`asset-quote--${isProfit.value ? 'positive' : 'negative'}`)
+    const profitClass = isProfit.value ? 'success' : 'danger'
+    classes.push(`asset-quote--${profitClass}`)
   }
 
   return classes
@@ -55,3 +57,14 @@ const classes = computed(() => {
     {{ props.quote.symbol }}
   </div>
 </template>
+
+<style lang="scss">
+.asset-quote {
+  &--success {
+    color: $success;
+  }
+  &--danger {
+    color: $danger;
+  }
+}
+</style>

@@ -1,4 +1,4 @@
-import { PAGE_NAME, PAGE_TITLE } from '../consts/consts'
+import { PAGE_NAME, PAGE_TITLE } from '../consts/base'
 import { LAYOUT_NAME_PAGE_NOT_FOUND } from '@/shared/consts'
 
 export const pageNotFoundRoutes = [

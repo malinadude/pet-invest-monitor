@@ -1,7 +1,16 @@
+@use './functions';
+
 $black: #000;
 $white: #fff;
-$blue: #00aff5;
-$dark-blue: rgba(120,201,234,.18);
+$primary: #00aff5;
+$bg-primary: functions.transformColorToBg($primary);
+$danger: #f27362;
+$bg-danger: functions.transformColorToBg($danger);
+$success: #5cd59b;
+$bg-success: functions.transformColorToBg($success);
+$info: #9a6afa;
+$bg-info: functions.transformColorToBg($info);
+$dark-blue: functions.transformColorToBg(#78c9ea);
 $grey-1: #282832;
 $grey-2: #32323e;
 $grey-3: #4d505f;

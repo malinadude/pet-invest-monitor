@@ -1,4 +1,7 @@
-import VDropdown from '@/shared/components/ui/VDropdown.vue'
-import VIosSwitch from '@/shared/components/ui/VIosSwitch.vue'
+import VDropdown from './VDropdown.vue'
+import VIosSwitch from './VIosSwitch.vue'
+import VContentBlock from './VContentBlock.vue'
+import VSymbol from './VSymbol.vue'
+import VHelp from './VHelp.vue'
 
-export { VDropdown, VIosSwitch }
+export { VDropdown, VIosSwitch, VContentBlock, VSymbol, VHelp }

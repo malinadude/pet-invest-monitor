@@ -1,0 +1,6 @@
+@use 'sass:color';
+
+@function transformColorToBg($color) {
+  $transformColor: color.change($color, $alpha: 0.18);
+  @return $transformColor;
+}

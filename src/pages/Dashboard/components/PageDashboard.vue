@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import { VInvestmentCapital } from '@/entities/Investment'
+</script>
+
 <template>
-  PageDashboard
+  <div class="page-dashboard">
+    <VInvestmentCapital />
+  </div>
 </template>

@@ -1,4 +1,4 @@
-import { PAGE_NAME, PAGE_TITLE } from '../consts/consts'
+import { PAGE_NAME, PAGE_TITLE } from '../consts/base'
 import { LAYOUT_NAME_DEFAULT } from '@/shared/consts'
 
 export const pageDashboardRoutes = [

@@ -9,8 +9,8 @@ const commonStore = useCommonStore()
 <template>
   <VIosSwitch
     class="theme-switch"
-    :isChecked="commonStore.state.isDarkTheme"
-    @update:isChecked="commonStore.switchTheme"
+    :is-checked="commonStore.state.isDarkTheme"
+    @update:is-checked="commonStore.switchTheme"
   />
 </template>
 

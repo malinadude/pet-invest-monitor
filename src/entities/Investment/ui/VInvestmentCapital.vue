@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { VContentBlock, VSymbol, VHelp } from '@/shared/components/ui'
+import { VContentBlock, VSymbol, VHelp } from '@/shared/ui'
 </script>
 
 <template>

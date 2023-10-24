@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 
-import useInitialCurrency from '../../lib/hooks/useInitialCurrency'
-import mapCurrency from '../../lib/mappers/currency'
+import useInitialCurrency from '../lib/hooks/useInitialCurrency'
+import mapCurrency from '../lib/mappers/currency.map'
 
-import { STORE_NAME, CURRENCIES } from '../../consts/base'
+import { STORE_NAME, CURRENCIES } from '../consts/currency.consts'
 
-import type { ICurrency } from '../types/base'
+import type { ICurrency } from './currency.types'
 
 interface ICurrencyStore {
   state: {

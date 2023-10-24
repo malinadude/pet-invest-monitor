@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useCommonStore } from '@/shared/model/store'
 
-import { VIosSwitch } from '@/shared/components/ui'
+import { VIosSwitch } from '@/shared/ui'
 
 const commonStore = useCommonStore()
 </script>

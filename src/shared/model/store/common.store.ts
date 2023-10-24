@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 
 import { useInitialTheme } from '../../lib/hooks/useInitialTheme'
 
-import { STORE_NAME } from '../../consts/common'
+import { STORE_NAME } from '../../consts/common.consts'
 
 interface ICommonStore {
   state: {

@@ -1,4 +1,4 @@
-import type { ICurrency } from '../../model/types/base'
+import type { ICurrency } from '../../model/currency.types'
 
 import getIconPath from '../helpers/getIconPath'
 

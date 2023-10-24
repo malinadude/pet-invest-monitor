@@ -4,7 +4,7 @@ import { useRoute, RouterView } from 'vue-router'
 
 import { useCommonStore } from '@/shared/model/store'
 
-import { TheHeader } from '@/widgets/Header'
+import { TheHeader } from '@/widgets/header'
 
 const route = useRoute()
 const layout = computed(() => route.meta.layout)

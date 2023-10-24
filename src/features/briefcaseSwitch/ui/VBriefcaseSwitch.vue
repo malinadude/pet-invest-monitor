@@ -3,7 +3,7 @@ import { useBriefcaseStore } from '@/entities/Briefcase'
 
 import type { IBriefcase } from '@/entities/Briefcase'
 
-import { VDropdown } from '@/shared/components/ui'
+import { VDropdown } from '@/shared/ui'
 
 const briefcaseStore = useBriefcaseStore()
 

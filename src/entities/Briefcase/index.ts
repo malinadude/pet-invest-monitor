@@ -1,3 +1,2 @@
-export { useBriefcaseStore } from './model/store/base'
-
-export type { IBriefcase } from './model/types/base'
+export { useBriefcaseStore } from './model/briefcase.store'
+export type { IBriefcase } from './model/briefcase.types'

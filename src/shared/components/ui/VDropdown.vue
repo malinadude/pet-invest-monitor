@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
 
-defineProps<{
+const props = defineProps<{
   hasTriggerArrow?: boolean
 }>()
 
@@ -24,12 +24,14 @@ const dropdownClose = () => {
         <slot name="trigger" />
       </div>
 
-      <div v-if="hasTriggerArrow" class="ui-dropdown__arrow"></div>
+      <div v-if="props.hasTriggerArrow" class="ui-dropdown__arrow"></div>
     </div>
 
-    <div class="ui-dropdown__content" v-show="isOpen">
-      <slot name="content" :dropdownClose="dropdownClose" />
-    </div>
+    <Transition>
+      <div class="ui-dropdown__content" v-if="isOpen">
+        <slot name="content" :dropdownClose="dropdownClose" />
+      </div>
+    </Transition>
   </div>
 </template>
 

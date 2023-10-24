@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { ILink } from '@/shared/model/types'
 
-import { VThemeSwitch } from '@/features/Theme'
-import { VCurrencySwitch } from '@/features/Currency'
+import { VThemeSwitch } from '@/shared/components/ui'
+import { VCurrencySwitch } from '@/features/currencySwitch'
 
 const links: ILink[] = [
   {

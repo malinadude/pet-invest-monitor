@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useElementHover } from '@vueuse/core'
 
 const props = defineProps<{
   hasTriggerBorder?: boolean
@@ -15,10 +16,13 @@ const triggerClasses = computed(() => {
 
   return transformedClasses
 })
+
+const triggerHoverElement = ref()
+const isHovered = useElementHover(triggerHoverElement)
 </script>
 
 <template>
-  <div class="ui-help">
+  <div class="ui-help" ref="triggerHoverElement">
     <div class="ui-help__trigger" :class="triggerClasses">
       <slot name="trigger" />
 
@@ -29,29 +33,32 @@ const triggerClasses = computed(() => {
       />
     </div>
 
-    <div class="ui-help__content">
-      <slot name="content" />
-    </div>
+    <Transition>
+      <div class="ui-help__content" v-if="isHovered">
+        <div class="ui-help__content-wrapper">
+          <slot name="content" />
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <style lang="scss">
 .ui-help {
+  position: relative;
+
   &__icon-help {
     border-radius: 50%;
     border: 1px solid;
     width: 0.45rem;
     height: 0.45rem;
     padding: 3px;
-    margin-bottom: -4px;
     color: #adb5bd;
   }
 
   &__trigger {
     display: flex;
     align-items: center;
-    border-bottom: 1px dashed transparent;
-    padding-bottom: 6px;
     cursor: help;
 
     & > *:not(:last-child) {
@@ -60,6 +67,36 @@ const triggerClasses = computed(() => {
 
     &--bordered {
       border-bottom: 1px dashed #adb5bd;
+      padding-bottom: 6px;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    min-width: 300px;
+
+    &:before {
+      content: '';
+      background-color: #1e1e2d;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+    }
+
+    &-wrapper {
+      background-color: #1e1e2d;
+      margin: 10px 0;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 3px;
     }
   }
 }

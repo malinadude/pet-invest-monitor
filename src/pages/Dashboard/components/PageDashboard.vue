@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { VAnanylicsCapital } from '@/entities/Analytics'
+import { VInvestmentCapital } from '@/entities/Investment'
 </script>
 
 <template>
   <div class="page-dashboard">
-    <VAnanylicsCapital />
+    <VInvestmentCapital />
   </div>
 </template>

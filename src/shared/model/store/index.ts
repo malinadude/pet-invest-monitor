@@ -1,1 +1,1 @@
-export { useCommonStore } from './common'
+export { useCommonStore } from './common.store'

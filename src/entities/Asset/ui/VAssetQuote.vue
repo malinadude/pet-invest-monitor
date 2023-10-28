@@ -4,7 +4,7 @@ import { computed } from 'vue'
 // eslint-disable-next-line
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import type { IAssetQuote } from '../model/types/quote'
+import type { IAssetQuote } from '../model/quote.types'
 
 const props = defineProps<{
   quote: IAssetQuote

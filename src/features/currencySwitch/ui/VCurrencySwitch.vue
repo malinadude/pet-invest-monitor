@@ -3,7 +3,7 @@ import { useCurrencyStore } from '@/entities/Currency'
 
 import type { ICurrency } from '@/entities/Currency'
 
-import { VDropdown } from '@/shared/components/ui'
+import { VDropdown } from '@/shared/ui'
 
 const currencyStore = useCurrencyStore()
 

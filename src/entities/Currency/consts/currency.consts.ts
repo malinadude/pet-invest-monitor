@@ -1,4 +1,4 @@
-import type { ICurrency } from '../model/types/base'
+import type { ICurrency } from '../model/currency.types'
 
 export const STORE_NAME = 'currency'
 export const DEFAULT_CURRENCY_CODE = 'rub'

@@ -4,13 +4,13 @@ import { reactive } from 'vue'
 import useInitialCurrency from '../lib/hooks/useInitialCurrency'
 import mapCurrency from '../lib/mappers/currency.map'
 
-import { STORE_NAME, CURRENCIES } from '../consts/currency.consts'
+import { STORE_NAME, CURRENCIES, LOCALSTORAGE_KEY_ACTIVE_CURRENCY } from '../consts/currency.consts'
 
 import type { ICurrency } from './currency.types'
 
 interface ICurrencyStore {
   state: {
-    currentCurrency: ICurrency
+    activeCurrency: ICurrency
   }
 
   getCurrencies: () => ICurrency[]
@@ -20,7 +20,7 @@ interface ICurrencyStore {
 
 export const useCurrencyStore = defineStore(STORE_NAME, (): ICurrencyStore => {
   const state = reactive({
-    currentCurrency: mapCurrency(useInitialCurrency())
+    activeCurrency: mapCurrency(useInitialCurrency())
   })
 
   /**
@@ -28,9 +28,7 @@ export const useCurrencyStore = defineStore(STORE_NAME, (): ICurrencyStore => {
    * @return {ICurrency[]}
    */
   const getCurrencies = (): ICurrency[] => {
-    return CURRENCIES.map((currency: ICurrency) => {
-      return mapCurrency(currency)
-    })
+    return CURRENCIES.map((currency: ICurrency) => mapCurrency(currency))
   }
 
   /**
@@ -38,10 +36,10 @@ export const useCurrencyStore = defineStore(STORE_NAME, (): ICurrencyStore => {
    * @param {ICurrency} currency
    */
   const setCurrency = (currency: ICurrency) => {
-    if (currency.code === state.currentCurrency.code) return
+    if (currency.code === state.activeCurrency.code) return
 
-    localStorage.setItem('currentCurrency', currency.code)
-    state.currentCurrency = currency
+    localStorage.setItem(LOCALSTORAGE_KEY_ACTIVE_CURRENCY, currency.code)
+    state.activeCurrency = currency
   }
 
   return {

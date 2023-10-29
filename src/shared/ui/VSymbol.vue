@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 
-type SymbolSize = 20 | 30 | 40
-type SymbolColor = 'transparent' | 'primary' | 'success' | 'info' | 'danger'
+type SymbolSize = 20 | 25 | 30 | 40
+type SymbolColor = 'transparent' | 'primary' | 'success' | 'info' | 'danger' | 'grey'
 
 const props = withDefaults(
   defineProps<{
@@ -16,17 +16,23 @@ const props = withDefaults(
 )
 
 const classes = computed(() => {
-  const transformedClasses = []
+  const classes = []
 
-  transformedClasses.push(`ui-symbol--color--${props.color}`)
-  transformedClasses.push(`ui-symbol--size--${props.size}`)
+  classes.push(`ui-symbol--color--${props.color}`)
 
-  return transformedClasses
+  return classes
+})
+
+const styles = computed(() => {
+  return {
+    minWidth: `${props.size}px`,
+    height: `${props.size}px`
+  }
 })
 </script>
 
 <template>
-  <div class="ui-symbol" :class="classes">
+  <div class="ui-symbol" :class="classes" :style="styles">
     <slot />
   </div>
 </template>
@@ -37,6 +43,7 @@ const classes = computed(() => {
   align-items: center;
   justify-content: center;
   border-radius: 0.42rem;
+  font-size: 0.75rem;
 
   &--color {
     &--primary {
@@ -55,21 +62,9 @@ const classes = computed(() => {
       background-color: $bg-danger;
       color: $danger;
     }
-  }
-
-  &--size {
-    &--20 {
-      width: 20px;
-      height: 20px;
-      font-size: 0.75rem;
-    }
-    &--30 {
-      width: 30px;
-      height: 30px;
-    }
-    &--40 {
-      width: 40px;
-      height: 40px;
+    &--grey {
+      background-color: $grey-3;
+      color: $grey-8;
     }
   }
 }

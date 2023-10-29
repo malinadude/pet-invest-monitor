@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import type { RouteRecordRaw } from 'vue-router'
-
 import { pageDashboardRoutes } from '@/pages/dashboard'
 import { pageNotFoundRoutes } from '@/pages/not-found'
 import { pageBriefcasesRoutes } from '@/pages/briefcases'
+
+import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   ...pageDashboardRoutes,

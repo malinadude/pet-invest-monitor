@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useCurrencyStore } from '@/entities/Currency'
+import { VDropdown, VSymbol } from '@/shared/ui'
 
 import type { ICurrency } from '@/entities/Currency'
-
-import { VDropdown } from '@/shared/ui'
 
 const currencyStore = useCurrencyStore()
 
@@ -16,8 +15,10 @@ const setCurrency = (currency: ICurrency, callbackDropdownClose: Function) => {
 <template>
   <VDropdown class="currency-switch" :hasTriggerArrow="true">
     <template #trigger>
-      <div class="currency-switch__current-currency">
-        {{ currencyStore.state.currentCurrency.code }}
+      <div class="currency-switch__active-currency">
+        <div class="currency-switch__active-currency-code">
+          {{ currencyStore.state.activeCurrency.code }}
+        </div>
       </div>
     </template>
 
@@ -31,9 +32,11 @@ const setCurrency = (currency: ICurrency, callbackDropdownClose: Function) => {
         >
           <img :src="currency.icon" alt="" class="currency-switch__currencies-country-flag" />
 
-          <div class="currency-switch__currencies-code">{{ currency.code }}</div>
+          <VSymbol color="grey" :size="25" class="currency-switch-code">
+            {{ currency.code }}
+          </VSymbol>
 
-          <div class="currency-switch__currencies-title">{{ currency.title }}</div>
+          <div class="currency-switch-name">{{ currency.name }}</div>
         </div>
       </div>
     </template>
@@ -42,14 +45,27 @@ const setCurrency = (currency: ICurrency, callbackDropdownClose: Function) => {
 
 <style lang="scss">
 .currency-switch {
-  &__currencies {
-    width: 220px;
+  $currencySwitch: &;
 
+  &__active-currency {
+    text-transform: uppercase;
+  }
+
+  &__currencies {
     &-item {
       cursor: pointer;
       display: flex;
       align-items: center;
       font-size: 1rem;
+      padding: 5px 15px;
+
+      &:hover {
+        background-color: var(--bg-tab-hover);
+
+        #{$currencySwitch}-name {
+          color: $primary;
+        }
+      }
 
       &:not(:last-child) {
         margin-bottom: 10px;
@@ -57,8 +73,25 @@ const setCurrency = (currency: ICurrency, callbackDropdownClose: Function) => {
     }
   }
 
-  &__current-currency {
-    text-transform: uppercase;
+  .ui-dropdown {
+    &__trigger {
+      padding: 0.5rem;
+      border-radius: 0.42rem;
+      font-weight: 600;
+      font-size: 0.925rem;
+
+      &:hover {
+        background-color: var(--bg-tab-hover);
+
+        #{$currencySwitch}__active-currency-code {
+          color: $primary;
+        }
+      }
+    }
+
+    &__content {
+      width: 220px;
+    }
   }
 
   &__currencies-country-flag {
@@ -67,14 +100,11 @@ const setCurrency = (currency: ICurrency, callbackDropdownClose: Function) => {
     border-radius: 5px;
   }
 
-  &__currencies-code {
+  &-code {
     text-transform: uppercase;
     font-weight: 500;
     margin-right: 5px;
     font-size: 0.8rem;
-    color: #dee2e6;
-    background-color: #4d505f;
-    border-radius: 0.42rem;
     padding: 0.25rem;
   }
 }

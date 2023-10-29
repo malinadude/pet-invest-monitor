@@ -6,7 +6,13 @@ import { VTable, VContentBlock } from '@/shared/ui'
 import { useBriefcaseStore, VBriefcaseAddButton } from '@/entities/Briefcase'
 import mapBriefcaseTableBody from '../lib/mappers/briefcaseTableBody.map'
 
-import type { ITableData, TTableAction, ITableActionData, INotification } from '@/shared/ui'
+import type {
+  ITableData,
+  TTableAction,
+  ITableActionData,
+  INotification,
+  IModalConfirmationData
+} from '@/shared/ui'
 
 const briefcaseStore = useBriefcaseStore()
 
@@ -35,6 +41,7 @@ const tableData: ITableData<string | TTableAction[]> = reactive({
 
 const busNotificationAdd = useEventBus<INotification>('notificationAdd')
 const busBriefcaseEdit = useEventBus<number>('modalBriefcaseEdit')
+const busModalConfirmation = useEventBus<IModalConfirmationData>('modalConfirmation')
 
 const handlerAction = (actionData: ITableActionData) => {
   if (actionData.action === 'delete') {
@@ -44,7 +51,12 @@ const handlerAction = (actionData: ITableActionData) => {
         type: 'danger'
       })
     } else {
-      briefcaseStore.deleteBriefcase(actionData.elementId)
+      busModalConfirmation.emit({
+        callback: {
+          function: briefcaseStore.deleteBriefcase,
+          args: [actionData.elementId]
+        }
+      })
     }
   }
 

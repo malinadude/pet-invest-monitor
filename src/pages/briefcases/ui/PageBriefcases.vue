@@ -2,6 +2,7 @@
 import { VBriefcasesManage } from '@/features/briefcasesManage'
 import { VModalBriefcaseAdd } from '@/features/modalBriefcaseAdd'
 import { VModalBriefcaseEdit } from '@/features/modalBriefcaseEdit'
+import { ModalConfirmation } from '@/shared/ui'
 </script>
 
 <template>
@@ -10,5 +11,6 @@ import { VModalBriefcaseEdit } from '@/features/modalBriefcaseEdit'
 
     <VModalBriefcaseAdd />
     <VModalBriefcaseEdit />
+    <ModalConfirmation />
   </div>
 </template>

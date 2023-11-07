@@ -1,5 +1,12 @@
+export interface IBroker {
+  icon: string
+  name: string
+  code: string
+}
+
 export interface IBriefcase {
   id: number
-  icon: string
-  title: string
+  name: string
+  broker: IBroker
+  createdAt: number
 }

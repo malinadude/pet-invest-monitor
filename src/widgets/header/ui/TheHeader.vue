@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import type { ILink } from '@/shared/model/types'
-
 import { VThemeSwitch } from '@/shared/ui'
 import { VCurrencySwitch } from '@/features/currencySwitch'
+import { VBriefcaseSwitch } from '@/features/briefcaseSwitch'
+
+import type { ILink } from '@/shared/model/types'
 
 const links: ILink[] = [
   {
@@ -29,6 +30,7 @@ const links: ILink[] = [
 
         <div class="header__actions">
           <VThemeSwitch />
+          <VBriefcaseSwitch />
           <VCurrencySwitch />
         </div>
       </div>
@@ -60,7 +62,7 @@ const links: ILink[] = [
     align-items: center;
 
     & > *:not(:last-child) {
-      margin-right: 15px;
+      margin-right: 10px;
     }
 
     &-item {

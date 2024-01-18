@@ -65,6 +65,7 @@ const classes = computed(() => {
     cursor: pointer;
     display: flex;
     align-items: center;
+    user-select: none;
   }
 
   &__arrow {

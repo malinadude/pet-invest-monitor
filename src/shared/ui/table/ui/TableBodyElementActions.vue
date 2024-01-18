@@ -14,6 +14,14 @@ const triggerAction = (action: TTableAction, functionDropdownClose: Function) =>
 
   functionDropdownClose()
 }
+
+const generateActionClasses = (action: string) => {
+  const classes = []
+
+  classes.push(`table-body-element-action--${action}`)
+
+  return classes
+}
 </script>
 
 <template>
@@ -27,6 +35,7 @@ const triggerAction = (action: TTableAction, functionDropdownClose: Function) =>
     <template #content="dropdownProps">
       <div
         class="table-body-element-action"
+        :class="generateActionClasses(action)"
         v-for="(action, actionIndex) in props.actions"
         :key="actionIndex"
         @click="triggerAction(action, dropdownProps.dropdownClose)"
@@ -52,6 +61,10 @@ const triggerAction = (action: TTableAction, functionDropdownClose: Function) =>
   align-items: center;
   cursor: pointer;
   padding: 5px 15px;
+
+  &--delete {
+    color: $danger;
+  }
 
   &:hover {
     background-color: var(--bg-tab-hover);

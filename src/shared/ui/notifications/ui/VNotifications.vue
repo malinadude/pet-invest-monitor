@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useEventBus } from '@vueuse/core'
 
 import type { Ref } from 'vue'
-import type { INotification } from '../model/types/notifications.types'
+import type { INotification } from '../model/notifications.types'
 
 const notifications: Ref<INotification[]> = ref([])
 
@@ -60,6 +60,7 @@ const addNotification = (notification: INotification) => {
     border-radius: 0.42rem;
     cursor: default;
     color: $white;
+    user-select: none;
 
     &--type {
       &-primary {

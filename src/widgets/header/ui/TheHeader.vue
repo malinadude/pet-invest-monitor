@@ -2,6 +2,7 @@
 import { VThemeSwitch } from '@/shared/ui'
 import { VCurrencySwitch } from '@/features/currencySwitch'
 import { VBriefcaseSwitch } from '@/features/briefcaseSwitch'
+import { VActionsDropdown } from '@/features/actionsDropdown'
 
 import type { ILink } from '@/shared/model/types'
 
@@ -30,6 +31,7 @@ const links: ILink[] = [
 
         <div class="header__actions">
           <VThemeSwitch />
+          <VActionsDropdown />
           <VBriefcaseSwitch />
           <VCurrencySwitch />
         </div>
@@ -73,8 +75,8 @@ const links: ILink[] = [
 
       &.router-link-active,
       &:hover {
-        background-color: #4d505f;
-        color: #fff;
+        background-color: $grey-3;
+        color: $white;
       }
     }
   }

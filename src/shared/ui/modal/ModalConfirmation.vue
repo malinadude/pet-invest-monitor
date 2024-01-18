@@ -69,9 +69,23 @@ const confirmationSuccess = () => {
 <style lang="scss">
 .modal-confirmation {
   &__actions {
-    & > *:not(:last-child) {
-      margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > * {
+      flex: 1;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
     }
+  }
+
+  .ui-content-block__title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
   }
 }
 </style>

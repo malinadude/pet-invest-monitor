@@ -22,13 +22,13 @@ const setCurrency = (currency: ICurrency, callbackDropdownClose: Function) => {
       </div>
     </template>
 
-    <template #content="props">
+    <template #content="dropdownProps">
       <div class="currency-switch__currencies">
         <div
           v-for="currency in currencyStore.getCurrencies()"
           :key="currency.code"
           class="currency-switch__currencies-item"
-          @click="setCurrency(currency, props.dropdownClose)"
+          @click="setCurrency(currency, dropdownProps.dropdownClose)"
         >
           <img :src="currency.icon" alt="" class="currency-switch__currencies-country-flag" />
 

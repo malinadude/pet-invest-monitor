@@ -6,17 +6,7 @@ import mapCurrency from '../lib/mappers/currency.map'
 
 import { STORE_NAME, CURRENCIES, LOCALSTORAGE_KEY_ACTIVE_CURRENCY } from '../consts/currency.consts'
 
-import type { ICurrency } from './currency.types'
-
-interface ICurrencyStore {
-  state: {
-    activeCurrency: ICurrency
-  }
-
-  getCurrencies: () => ICurrency[]
-
-  setCurrency: (currency: ICurrency) => void
-}
+import type { ICurrency, ICurrencyStore } from './currency.types'
 
 export const useCurrencyStore = defineStore(STORE_NAME, (): ICurrencyStore => {
   const state = reactive({

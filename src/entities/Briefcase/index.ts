@@ -1,15 +1,11 @@
 import VBriefcaseAddButton from './ui/VBriefcaseAddButton.vue'
 import VBriefcaseListButton from './ui/VBriefcaseListButton.vue'
 import VModalWrapperBriefcaseManage from './ui/VModalWrapperBriefcaseManage.vue'
-import getBrokerIconPath from './lib/helpers/getBrokerIconPath'
+import getLastBriefcase from './lib/helpers/getLastBriefcase'
 
 export { VBriefcaseAddButton, VBriefcaseListButton, VModalWrapperBriefcaseManage }
-export { getBrokerIconPath }
+export { getLastBriefcase }
+export { DEFAULT_BRIEFCASE } from './consts/briefcase.consts'
 export { useBriefcaseStore } from './model/briefcase.store'
-export {
-  IDB_OBJECT_STORE_NAME,
-  DEFAULT_BRIEFCASE,
-  DEFAULT_BROKER_ICON
-} from './consts/briefcase.consts'
 
-export type { IBroker, IBriefcase } from './model/briefcase.types'
+export type { IBriefcase } from './model/briefcase.types'

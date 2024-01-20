@@ -5,10 +5,12 @@ import { useEventBus } from '@vueuse/core'
 import { VContentBlock, VInput, VButton } from '@/shared/ui'
 import {
   DEFAULT_BRIEFCASE,
+  getLastBriefcase,
   useBriefcaseStore,
   VModalWrapperBriefcaseManage
 } from '@/entities/Briefcase'
 import { checkValidationRequired, getTimestamp } from '@/shared/lib/helpers'
+import { EMPTY_BROKER_ID } from '@/entities/Broker'
 
 const isOpened = ref(false)
 
@@ -30,11 +32,16 @@ const briefcaseModel = reactive({
 const validateRequiredBriefcaseModel = computed(() => checkValidationRequired(briefcaseModel))
 
 const briefcaseAdd = async () => {
+  const lastBriefcase = getLastBriefcase()
+
+  console.log('lastBriefcase', lastBriefcase)
+
   briefcaseStore.addBriefcase({
     ...DEFAULT_BRIEFCASE,
     ...briefcaseModel,
-    id: briefcaseStore.getLastIdBriefcase() + 1,
-    createdAt: getTimestamp()
+    id: lastBriefcase.id + 1,
+    createdAt: getTimestamp(),
+    broker: EMPTY_BROKER_ID
   })
 
   modalClose()

@@ -3,7 +3,7 @@
  * @param {string} icon
  */
 export default function getBrokerIconPath(icon: string) {
-  const brokerIconPath = '/src/entities/Briefcase/assets/images/broker/'
+  const brokerIconPath = '/src/entities/Broker/assets/images/'
 
   return `${brokerIconPath}${icon}`
 }

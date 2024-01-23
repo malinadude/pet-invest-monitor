@@ -4,3 +4,13 @@ export interface ICurrency {
   name: string
   symbol: string
 }
+
+export interface ICurrencyStore {
+  state: {
+    activeCurrency: ICurrency
+  }
+
+  getCurrencies: () => ICurrency[]
+
+  setCurrency: (currency: ICurrency) => void
+}

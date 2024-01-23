@@ -2,12 +2,13 @@
 import { useEventBus } from '@vueuse/core'
 
 import { VDropdown, VButton } from '@/shared/ui'
-import { DEFAULT_BROKER_ICON, getBrokerIconPath } from '@/entities/Briefcase'
+import { EMPTY_BROKER_ICON, getBrokerIconPath } from '@/entities/Broker'
 
 const busOpenModalBriefcaseAdd = useEventBus<string>('modalBriefcaseAdd')
 
-const openModalBriefcaseAdd = () => {
+const openModalBriefcaseAdd = (callbackDropdownClose: Function) => {
   busOpenModalBriefcaseAdd.emit()
+  callbackDropdownClose()
 }
 </script>
 
@@ -19,20 +20,24 @@ const openModalBriefcaseAdd = () => {
       </VButton>
     </template>
 
-    <template #content>
+    <template #content="dropdownProps">
       <div class="actions-dropdown__content">
         <div class="actions-dropdown__group">
           <div class="actions-dropdown__group-title">Активы / сделки</div>
 
           <div class="actions-dropdown__group-actions">
-            <div class="actions-dropdown__action">
+            <router-link
+              class="actions-dropdown__action"
+              to="/import-transactions"
+              @click="dropdownProps.dropdownClose()"
+            >
               <img
                 class="actions-dropdown__icon"
                 src="@/shared/assets/images/icon-upload.svg"
                 alt=""
               />
               Загрузить отчёт
-            </div>
+            </router-link>
           </div>
         </div>
 
@@ -40,10 +45,13 @@ const openModalBriefcaseAdd = () => {
           <div class="actions-dropdown__group-title">Портфели</div>
 
           <div class="actions-dropdown__group-actions">
-            <div class="actions-dropdown__action" @click="openModalBriefcaseAdd">
+            <div
+              class="actions-dropdown__action"
+              @click="openModalBriefcaseAdd(dropdownProps.dropdownClose)"
+            >
               <img
                 class="actions-dropdown__icon"
-                :src="getBrokerIconPath(DEFAULT_BROKER_ICON)"
+                :src="getBrokerIconPath(EMPTY_BROKER_ICON)"
                 alt=""
               />
               Новый портфель

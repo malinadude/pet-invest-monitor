@@ -3,59 +3,52 @@ import { reactive, ref } from 'vue'
 import { useEventBus } from '@vueuse/core'
 
 import { idb } from '@/shared/api'
-
-import mapBriefcase from '../lib/mappers/briefcase.map'
+import { IDB_BRIEFCASE_STORE_NAME } from '@/shared/consts'
 
 import {
   DEFAULT_BRIEFCASE,
-  IDB_OBJECT_STORE_NAME,
   LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE,
   STORE_NAME
 } from '../consts/briefcase.consts'
+import getLastBriefcase from '../lib/helpers/getLastBriefcase'
 
 import type { Ref } from 'vue'
-import type { IBriefcase } from './briefcase.types'
+import type { IBriefcase, IBriefcaseStore } from './briefcase.types'
 import type { INotification } from '@/shared/ui'
-
-interface IBriefcaseStore {
-  state: {
-    activeBriefcase: IBriefcase
-  }
-  briefcases: Ref<IBriefcase[]>
-
-  getBriefcase: (briefcaseId: number) => IBriefcase | null
-  setActiveBriefcase: (briefcaseId: number) => void
-  getLastIdBriefcase: () => number
-  addBriefcase: (briefcase: IBriefcase) => void
-  updateBriefcase: (briefcase: IBriefcase) => void
-  deleteBriefcase: (id: number) => void
-}
 
 const busNotificationAdd = useEventBus<INotification>('notificationAdd')
 
-let initialBriefcases = await idb.getAll(IDB_OBJECT_STORE_NAME)
+let initialBriefcases = await idb.getAll(IDB_BRIEFCASE_STORE_NAME)
+
+const lastBriefcase = await getLastBriefcase()
+
+const defaultBriefcaseTransformed = {
+  ...DEFAULT_BRIEFCASE,
+  id: lastBriefcase ? lastBriefcase.id + 1 : 0
+}
+console.log('defaultBriefcaseTransformed', defaultBriefcaseTransformed)
 
 let initialActiveBriefcase: IBriefcase
 if (localStorage.getItem(LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE)) {
   const foundedBriefcase = await idb.get(
-    IDB_OBJECT_STORE_NAME,
+    IDB_BRIEFCASE_STORE_NAME,
     JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE) || '')
   )
 
   if (foundedBriefcase) {
     initialActiveBriefcase = foundedBriefcase
   } else {
-    initialActiveBriefcase = mapBriefcase(DEFAULT_BRIEFCASE)
-    localStorage.setItem(LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE, String(DEFAULT_BRIEFCASE.id))
+    initialActiveBriefcase = defaultBriefcaseTransformed
+    localStorage.setItem(LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE, String(defaultBriefcaseTransformed.id))
   }
 } else {
   if (!initialBriefcases.length) {
-    await idb.add(IDB_OBJECT_STORE_NAME, DEFAULT_BRIEFCASE)
-    localStorage.setItem(LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE, String(DEFAULT_BRIEFCASE.id))
-    initialBriefcases = await idb.getAll(IDB_OBJECT_STORE_NAME)
+    await idb.add(IDB_BRIEFCASE_STORE_NAME, defaultBriefcaseTransformed)
+    localStorage.setItem(LOCALSTORAGE_KEY_ACTIVE_BRIEFCASE, String(defaultBriefcaseTransformed.id))
+    initialBriefcases = await idb.getAll(IDB_BRIEFCASE_STORE_NAME)
   }
 
-  initialActiveBriefcase = mapBriefcase(DEFAULT_BRIEFCASE)
+  initialActiveBriefcase = defaultBriefcaseTransformed
 }
 
 const useBriefcaseStore = defineStore(STORE_NAME, (): IBriefcaseStore => {
@@ -95,24 +88,11 @@ const useBriefcaseStore = defineStore(STORE_NAME, (): IBriefcaseStore => {
   }
 
   /**
-   * Возвращает ID последнего элемента
-   */
-  const getLastIdBriefcase = () => {
-    const lastBriefcase = briefcases.value.at(-1)
-
-    if (lastBriefcase === undefined) {
-      return 0
-    }
-
-    return lastBriefcase.id
-  }
-
-  /**
    * Добавление нового портфеля
    * @param {IBriefcase} briefcase
    */
   const addBriefcase = async (briefcase: IBriefcase) => {
-    await idb.add(IDB_OBJECT_STORE_NAME, briefcase)
+    await idb.add(IDB_BRIEFCASE_STORE_NAME, briefcase)
     briefcases.value.push(briefcase)
   }
 
@@ -121,8 +101,7 @@ const useBriefcaseStore = defineStore(STORE_NAME, (): IBriefcaseStore => {
    * @param {IBriefcase} briefcase
    */
   const updateBriefcase = async (briefcase: IBriefcase) => {
-    console.log('briefcase', briefcase)
-    await idb.put(IDB_OBJECT_STORE_NAME, briefcase)
+    await idb.put(IDB_BRIEFCASE_STORE_NAME, briefcase)
 
     const foundedIndex = briefcases.value.findIndex(
       (foundedBriefcase) => foundedBriefcase.id === briefcase.id
@@ -135,7 +114,7 @@ const useBriefcaseStore = defineStore(STORE_NAME, (): IBriefcaseStore => {
    * @param {number} id
    */
   const deleteBriefcase = async (id: number) => {
-    await idb.delete(IDB_OBJECT_STORE_NAME, id)
+    await idb.delete(IDB_BRIEFCASE_STORE_NAME, id)
 
     const deletableBriefcaseIndex = briefcases.value.findIndex((briefcase) => briefcase.id === id)
     briefcases.value.splice(deletableBriefcaseIndex, 1)
@@ -147,7 +126,6 @@ const useBriefcaseStore = defineStore(STORE_NAME, (): IBriefcaseStore => {
 
     getBriefcase,
     setActiveBriefcase,
-    getLastIdBriefcase,
     addBriefcase,
     updateBriefcase,
     deleteBriefcase
